@@ -1,0 +1,29 @@
+version: "1"
+name: daily_metrics
+
+source:
+  type: csv
+  path: data/daily_metrics.csv
+
+schema:
+  row_count:
+    min: 1
+
+  columns:
+    - name: date
+      type: string
+      nullable: false
+
+    - name: active_users
+      type: integer
+      nullable: false
+      min: 0
+
+    - name: revenue
+      type: float
+      nullable: false
+      min: 0
+
+freshness:
+  column: date
+  max_age_hours: 24

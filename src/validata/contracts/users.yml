@@ -1,0 +1,35 @@
+version: "1"
+name: users_data
+
+source:
+  type: csv
+  path: data/users.csv
+
+schema:
+  row_count:
+    min: 1
+
+  columns:
+    - name: user_id
+      type: integer
+      nullable: false
+      unique: true
+
+    - name: email
+      type: string
+      nullable: false
+
+    - name: age
+      type: integer
+      nullable: true
+      min: 0
+      max: 120
+
+    - name: country
+      type: string
+      nullable: true
+      allowed_values: ["IN", "US", "UK"]
+
+freshness:
+  column: updated_at
+  max_age_hours: 48

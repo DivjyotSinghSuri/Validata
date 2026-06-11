@@ -1,0 +1,34 @@
+version: "1"
+name: orders_data
+
+source:
+  type: csv
+  path: data/orders.csv
+
+schema:
+  row_count:
+    min: 1
+
+  columns:
+    - name: order_id
+      type: integer
+      nullable: false
+      unique: true
+
+    - name: user_id
+      type: integer
+      nullable: false
+
+    - name: amount
+      type: float
+      nullable: false
+      min: 0
+
+    - name: status
+      type: string
+      nullable: false
+      allowed_values: ["pending", "completed", "cancelled"]
+
+freshness:
+  column: created_at
+  max_age_hours: 24

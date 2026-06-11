@@ -1,0 +1,25 @@
+version: "1"
+
+name: dataset_name
+
+source:
+  type: csv        # csv or parquet
+  path: path/to/file.csv
+
+schema:
+  row_count:
+    min: 1
+    max: 1000000   # optional
+
+  columns:
+    - name: column_name
+      type: integer | float | string | boolean
+      nullable: true | false
+      unique: true | false   # optional
+      min: 0                 # for numeric
+      max: 100               # for numeric
+      allowed_values: []     # for categorical
+
+freshness:
+  column: timestamp_column
+  max_age_hours: 24
